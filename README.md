@@ -80,8 +80,6 @@ Import into Eclipse as an existing Java project.
 
 Set up the MySQL database using provided scripts:
 
-sql
-Copy code
 CREATE DATABASE jobportal;
 USE jobportal;
 
@@ -102,6 +100,7 @@ Modular DAO pattern for maintainable database interaction
 Extensible: You can easily add pagination, job filters, or email integration
 
 📸 Screenshots
+
 ![background1](https://github.com/user-attachments/assets/c2060a2f-f018-44a8-aae2-5e1ae7b8e825)
 
 
@@ -117,7 +116,9 @@ Admin analytics dashboard
 Job search with advanced filters
 
 🤝 Contributors
+
 Dheeraj – Developer
+
 Powered with ❤️ and Java
 
 📝 License
