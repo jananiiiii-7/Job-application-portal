@@ -92,6 +92,7 @@ Add the MySQL JDBC connector JAR to your project’s build path.
 Run main.java to launch the application.
 
 ✨ Highlights
+
 Clean OOP design with reusable components
 
 Secure login flow for all roles
@@ -101,9 +102,12 @@ Modular DAO pattern for maintainable database interaction
 Extensible: You can easily add pagination, job filters, or email integration
 
 📸 Screenshots
+![background1](https://github.com/user-attachments/assets/c2060a2f-f018-44a8-aae2-5e1ae7b8e825)
+
 
 
 💡 Future Enhancements
+
 Email verification & notifications
 
 Resume uploads for job seekers
