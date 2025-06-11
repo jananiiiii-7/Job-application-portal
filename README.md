@@ -90,6 +90,7 @@ USE jobportal;
 Add the MySQL JDBC connector JAR to your project’s build path.
 
 Run main.java to launch the application.
+---
 ✨ Highlights
 Clean OOP design with reusable components
 
