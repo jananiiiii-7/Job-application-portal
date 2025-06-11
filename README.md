@@ -100,7 +100,8 @@ Modular DAO pattern for maintainable database interaction
 Extensible: You can easily add pagination, job filters, or email integration
 
 📸 Screenshots
-You can add images from your project here to showcase GUI panels.
+![background1](https://github.com/user-attachments/assets/a39f61f3-152c-41dd-8591-5b2644835e43)
+
 
 💡 Future Enhancements
 Email verification & notifications
