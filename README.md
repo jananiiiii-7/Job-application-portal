@@ -26,6 +26,23 @@ A beginner-friendly, full-featured Job Portal application built using **Java Swi
 
 ---
 
+## 📦 Folder Structure
+
+com.jobportalapp
+
+├── ui // All UI panels (LoginForm, Dashboards, Forms)
+
+├── dao // DB interaction (UserDAO, JobDAO, ApplicationDAO)
+
+├── model // Data models (User, Job, Application)
+
+├── db // DB connection utility
+
+├── util // Validators, Helpers, etc.
+
+└── main.java // Entry point
+
+---
 ## 🧱 Tech Stack
 
 | Layer         | Technology       |
@@ -57,7 +74,7 @@ A beginner-friendly, full-featured Job Portal application built using **Java Swi
 ### 2. Setup
 
 Clone the repository:  
-```bash
+
 git clone https://github.com/your-username/JobPortalApp.git
 Import into Eclipse as an existing Java project.
 
@@ -101,20 +118,3 @@ Powered with ❤️ and Java
 
 📝 License
 This project is open-source and available under the MIT License.
-
-## 📦 Folder Structure
-
-com.jobportalapp
-
-├── ui // All UI panels (LoginForm, Dashboards, Forms)
-
-├── dao // DB interaction (UserDAO, JobDAO, ApplicationDAO)
-
-├── model // Data models (User, Job, Application)
-
-├── db // DB connection utility
-
-├── util // Validators, Helpers, etc.
-
-└── main.java // Entry point
-
