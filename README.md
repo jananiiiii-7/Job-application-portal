@@ -50,7 +50,7 @@ Setup Instructions
 
 Clone the repository
 
-git clone https://github.com/yourusername/JOB-APPLICATION-PORTAL.git
+git clone https:///jananiiiii-7/Job-application-portal/.git
 
 
 Import the project in your IDE (Eclipse, IntelliJ IDEA, or NetBeans).
