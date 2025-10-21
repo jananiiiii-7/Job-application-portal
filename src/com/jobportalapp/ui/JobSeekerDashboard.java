@@ -40,7 +40,7 @@ public class JobSeekerDashboard extends JFrame {
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         mainPanel.add(titleLabel, BorderLayout.NORTH);
 
-        String[] columnNames = {"Job ID", "Title", "Company", "Location", "Salary"};
+        String[] columnNames = {"Job ID", "Title", "Company", "Location", "Salary", "Applicants"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0) {
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -70,7 +70,12 @@ public class JobSeekerDashboard extends JFrame {
 
     private List<String[]> loadJobListings() {
         List<String[]> jobListings = new ArrayList<>();
-        String query = "SELECT id, title, company_name, location, salary FROM jobs WHERE status = 'active'";
+        String query = "SELECT j.id, j.title, j.company_name, j.location, j.salary, COUNT(ja.job_seeker_id) as applicants " +
+                       "FROM jobs j " +
+                       "LEFT JOIN job_applications ja ON j.id = ja.job_id " +
+                       "WHERE j.status = 'open' " +
+                       "GROUP BY j.id, j.title, j.company_name, j.location, j.salary";
+
 
         try (Connection connection = DBConnection.getConnection();
              Statement stmt = connection.createStatement();
@@ -82,7 +87,8 @@ public class JobSeekerDashboard extends JFrame {
                         rs.getString("title"),
                         rs.getString("company_name"),
                         rs.getString("location"),
-                        String.format("%.2f", rs.getDouble("salary"))
+                        String.format("%.2f", rs.getDouble("salary")),
+                        String.valueOf(rs.getInt("applicants"))
                 };
                 jobListings.add(job);
             }
@@ -124,7 +130,7 @@ public class JobSeekerDashboard extends JFrame {
             stmt.setInt(1, jobId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return "active".equalsIgnoreCase(rs.getString("status"));
+                return "open".equalsIgnoreCase(rs.getString("status"));
             }
 
         } catch (SQLException e) {
@@ -134,8 +140,8 @@ public class JobSeekerDashboard extends JFrame {
     }
 
     private void applyForJob(int userId, int jobId) {
-        String checkQuery = "SELECT COUNT(*) FROM job_applications WHERE user_id = ? AND job_id = ?";
-        String insertQuery = "INSERT INTO job_applications (user_id, job_id, application_date) VALUES (?, ?, NOW())";
+        String checkQuery = "SELECT COUNT(*) FROM job_applications WHERE job_seeker_id = ? AND job_id = ?";
+        String insertQuery = "INSERT INTO job_applications (job_seeker_id, job_id, application_date) VALUES (?, ?, NOW())";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement checkStmt = connection.prepareStatement(checkQuery)) {

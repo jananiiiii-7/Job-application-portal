@@ -153,13 +153,14 @@ public class RegisterForm extends JFrame {
 
         // Connect to the database and insert data
         try (Connection conn = DBConnection.getConnection()) {
-            String sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO users (username, password, email, role, full_name) VALUES (?, ?, ?, ?, ?)";
 
             try (PreparedStatement pst = conn.prepareStatement(sql)) {
-                pst.setString(1, name);
-                pst.setString(2, email);
-                pst.setString(3, password);  // Store the password without hashing
+                pst.setString(1, email); // username as email
+                pst.setString(2, password);  // Store the password without hashing
+                pst.setString(3, email);
                 pst.setString(4, role);
+                pst.setString(5, name);
 
                 int rowsAffected = pst.executeUpdate();
                 if (rowsAffected > 0) {

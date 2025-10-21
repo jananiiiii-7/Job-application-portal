@@ -8,7 +8,9 @@ public class BackgroundPanel extends JPanel {
 
     // Constructor with image path
     public BackgroundPanel(String imagePath) {
+        System.out.println("Loading image from: " + imagePath);
         backgroundImage = new ImageIcon(imagePath).getImage();
+        System.out.println("Image loaded: " + (backgroundImage != null));
     }
 
     // Default constructor with a fallback image (optional)

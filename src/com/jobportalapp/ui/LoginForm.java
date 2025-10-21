@@ -171,7 +171,7 @@ public class LoginForm extends JFrame {
         }
 
         try (Connection connection = DBConnection.getConnection()) {
-            String sql = "SELECT id, name, password, status FROM users WHERE email = ? AND role = ?";
+            String sql = "SELECT id, full_name, password, is_active FROM users WHERE email = ? AND role = ?";
             try (PreparedStatement stmt = connection.prepareStatement(sql)) {
                 stmt.setString(1, email);
                 stmt.setString(2, role);
@@ -179,16 +179,17 @@ public class LoginForm extends JFrame {
                 try (ResultSet rs = stmt.executeQuery()) {
                     if (rs.next()) {
                         String storedPassword = rs.getString("password");
-                        String status = rs.getString("status");
+                        boolean isActive = rs.getBoolean("is_active");
 
-                        if (!"active".equalsIgnoreCase(status)) {
+                        if (!isActive) {
                             JOptionPane.showMessageDialog(this, "Account is inactive. Contact admin.", "Access Denied", JOptionPane.WARNING_MESSAGE);
                             return;
                         }
 
                         if (password.equals(storedPassword)) {
                             int userId = rs.getInt("id");
-                            String name = rs.getString("name");
+                            String name = rs.getString("full_name");
+                            String status = isActive ? "active" : "inactive";
 
                             // ✅ Create User and Set Session
                             User loggedInUser = new User(userId, name, email, role, status);

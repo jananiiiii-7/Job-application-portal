@@ -47,11 +47,13 @@ public class AdminDAO {
             while (rs.next()) {
                 Job job = new Job(
                     rs.getInt("id"),
-                    rs.getInt("employer_id"), // assumes employer_id exists in jobs table
+                    rs.getInt("employer_id"),
                     rs.getString("title"),
+                    rs.getString("company_name"),
                     rs.getString("location"),
-                    rs.getString("salary"),
-                    rs.getString("description")
+                    rs.getDouble("salary"),
+                    rs.getString("description"),
+                    rs.getString("status")
                 );
                 jobList.add(job);
             }

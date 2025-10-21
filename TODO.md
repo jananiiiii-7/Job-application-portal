@@ -1,0 +1,3 @@
+- [x] Update BrowseJobsForm.java to include applicants count column
+- [x] Update JobSeekerDashboard.java to include applicants count column
+- [x] Test the changes by running the application

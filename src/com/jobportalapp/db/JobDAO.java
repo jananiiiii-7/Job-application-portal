@@ -1,4 +1,6 @@
-package com.jobportalapp.dao;
+package com.jobportalapp.db;
+
+
 
 import com.jobportalapp.db.DBConnection;
 import com.jobportalapp.model.Job;

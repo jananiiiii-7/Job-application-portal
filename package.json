@@ -1,0 +1,23 @@
+"scripts": {
+  "start": "node index.js"
+}
+{
+  "name": "jobportalapp-java-swing-mysql",
+  "version": "1.0.0",
+  "description": "A beginner-friendly, full-featured Job Portal application built using **Java Swing** for the frontend and **MySQL** for the backend. This project simulates a job marketplace where **job seekers** can explore and apply to jobs, **employers** can post and manage openings, and **admins** oversee the platform.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dheeraj-pathak/JobPortalApp-Java-Swing-MySQL.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dheeraj-pathak/JobPortalApp-Java-Swing-MySQL/issues"
+  },
+  "homepage": "https://github.com/Dheeraj-pathak/JobPortalApp-Java-Swing-MySQL#readme"
+}

@@ -40,8 +40,8 @@ public class BrowseJobsForm extends JFrame {
 
         // Job Table
         List<String[]> jobs = loadJobs();
-        String[] columnNames = {"Job ID", "Title", "Company", "Location"};
-        Object[][] data = new Object[jobs.size()][4];
+        String[] columnNames = {"Job ID", "Title", "Company", "Location", "Applicants"};
+        Object[][] data = new Object[jobs.size()][5];
 
         for (int i = 0; i < jobs.size(); i++) {
             data[i] = jobs.get(i);
@@ -74,18 +74,23 @@ public class BrowseJobsForm extends JFrame {
 
     private List<String[]> loadJobs() {
         List<String[]> jobs = new ArrayList<>();
-        String query = "SELECT id, title, company, location FROM jobs";
+        String query = "SELECT j.id, j.title, j.company_name as company, j.location, COUNT(ja.job_seeker_id) as applicants " +
+                       "FROM jobs j " +
+                       "LEFT JOIN job_applications ja ON j.id = ja.job_id " +
+                       "WHERE j.status = 'open' " +
+                       "GROUP BY j.id, j.title, j.company_name, j.location";
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement stmt = connection.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                String[] job = new String[4];
+                String[] job = new String[5];
                 job[0] = String.valueOf(rs.getInt("id"));
                 job[1] = rs.getString("title");
                 job[2] = rs.getString("company");
                 job[3] = rs.getString("location");
+                job[4] = String.valueOf(rs.getInt("applicants"));
                 jobs.add(job);
             }
 
@@ -102,7 +107,7 @@ public class BrowseJobsForm extends JFrame {
             int jobId = Integer.parseInt(jobTable.getValueAt(selectedRow, 0).toString());
 
             // Insert into job_applications table
-            String query = "INSERT INTO job_applications (user_id, job_id) VALUES (?, ?)";
+            String query = "INSERT INTO job_applications (job_seeker_id, job_id) VALUES (?, ?)";
 
             try (Connection connection = DBConnection.getConnection();
                  PreparedStatement stmt = connection.prepareStatement(query)) {
